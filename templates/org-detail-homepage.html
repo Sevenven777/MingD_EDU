@@ -1,0 +1,79 @@
+{% extends 'org_base.html' %}
+{% load staticfiles %}
+{% block title %}铭德教育-机构首页{% endblock %}
+
+{% block right_form %}
+
+    <div class="right companycenter layout grouping">
+        <div class="head">
+
+            <h1>{{ course_org.name }} - 全部课程</h1>
+
+        </div>
+        <div class="brief group_list">
+            {% for course in all_courses %}
+                <div class="module1_5 box">
+                    <a href="{% url 'courses:course_detail' course.id %}"><img width="214"
+                                                                               src="{{ MEDIA_URL }}{{ course.image }}"/></a>
+                    <div class="des">
+                        <a href="{% url 'courses:course_detail' course.id %}"><h2>{{ course.name }}</h2></a>
+                        <span class="fl">课时：<i class="key">{{ course.learn_times }}</i></span>
+                        <span class="fr">参加人数：{{ course.students }}</span>
+                    </div>
+                    <div class="bottom">
+                        <span class="fl">{{ course.course_org.name }}</span>
+                        <span class="star fr  notlogin
+                            " id="jsRightBtn">
+                             {{ course.fav_num }}
+                        </span>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+ </div>
+
+        <div class="right companycenter layout">
+            <div class="head">
+                <h1>{{ course_org.name }} - 全部教师</h1>
+            </div>
+            {% for teacher in all_teachers %}
+                <div class="diarys">
+                    <div class="module5 share company-diary-box" style="padding:10px 0;">
+                        <div class="left">
+                            <img class="pic" src="{{ MEDIA_URL }}{{ teacher.image }}"/>
+                            {#                    <p>昵称：{{ teacher.name }}</p>#}
+                        </div>
+                        <div class="right">
+                            <div class="top">
+                                <div class="fl">
+                                    <a href=""><h1>{{ teacher.name }}</h1></a>
+                                    <span>工作年限：{{ teacher.work_year }}</span>
+                                </div>
+                            </div>
+                            <div class="middle" style="border-bottom:0;">授课风格：{{ teacher.work_style }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="right companycenter layout">
+            <div class="head">
+                <h1>{{ course_org.name }} - 介绍</h1>
+
+            </div>
+            <div class="cont">&nbsp; &nbsp; <p>&nbsp; &nbsp;</p>
+                {#            <h1 class="ue_t" label="Title center" name="tc"#}
+                {#                style="border-bottom-color:#cccccc;border-bottom-width:2px;border-bottom-style:solid;padding:0px 4px 0px 0px;text-align:center;margin:0px 0px 20px;">#}
+                {#                <span style="color:#c0504d;">[键入文档标题]</span></h1>#}
+                <p style="text-align:center;"><strong class="ue_t">{{ course_org.desc }}</strong></p>
+                {#            <h3><span class="ue_t" style="font-family:幼圆">[标题 1]</span></h3>#}
+
+                {#            <p><br/></p><a href="/company/desc/22/"><span class="green">[查看更多]</span></a>#}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+

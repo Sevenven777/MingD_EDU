@@ -1,0 +1,999 @@
+﻿{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'images/cat-solid.svg' %}" type="image/gif">
+    <title>铭德教育在线课堂</title>
+    <!--bootstrap.min.css-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!--animate.css-->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <!--fontawesome 5-->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <!--slicknav.css-->
+    <link rel="stylesheet" href="{% static '/css/slicknav.min.css' %}">
+    <!--slickslider.css-->
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <!-- lity.css -->
+    <link rel="stylesheet" href="{% static 'css/lity.min.css' %}">
+    <!-- Custom.css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!-- Preloader -->
+<div id="preloader"></div>
+<!-- Start-Header-Section -->
+<header class="header-type-three">
+    <!-- Topbar-start-area -->
+    <div class="header_top_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="contact_wrapper_top">
+                        <ul class="header_top_contact">
+                            <li><i class="fa fa-phone" aria-hidden="true"></i>8585-8585</li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i>t871640073@qq.com</li>
+                        </ul>
+                        <div class="topbar-icon">
+                            <ul>
+                                {% if request.user.is_authenticated %}
+                                    <li><a>您好! &nbsp;&nbsp;{{ request.user.username }}</a></li>
+                                    {#                                    <li><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></li>#}
+                                    <li><a class="personcenter fl" href="{% url 'users:user_info' %}">进入个人中心</a></li>
+                                    <li><a class="fr" href="{% url 'logout' %}">退出</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'login' %}">
+                                        {#  <i class="fab fa-behance"></i>#}
+                                        登录</a></li>
+                                    <li><a href="{% url 'register' %}">
+                                        {#  <i class="fab fa-twitter"></i>#}
+                                        注册</a></li>
+                                    {#   <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>#}
+                                    {#   <li><a href="#"><i class="fab fa-google"></i></a></li>#}
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End-Topbar-area -->
+
+
+    <!-- Menu-start-area -->
+    <div class="header-fixed header-one">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html">
+                    <img src="../static/images/md_edu3.png" alt="logo">
+                </a>
+                <div class="collapse navbar-collapse my-lg-0" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item "><a class="nav-link" href="{% url 'index' %}">主页</a></li>
+                        <li class="nav-item "><a class="nav-link" href="{% url 'courses:course_list' %}">公开课</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'org:org_list' %}">授课机构</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'org:teacher_list' %}">授课教师</a></li>
+                    </ul>
+                    {#                    <div class="log-btn">#}
+                    {#                        <div id="search-btn">#}
+                    {#                            <form>#}
+                    {#                                <input id="search" name="search" type="text" placeholder="搜索课程/机构/讲师...">#}
+                    {#                                <a href="#" class="fa fa-search"></a>#}
+                    {#                            </form>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                </div>
+            </nav>
+            <div class="mobile-menu" data-logo="images/logo-wht.png"></div>
+        </div>
+    </div>
+    <!-- End-Menu-area-->
+</header>
+
+
+<!-- Start-Main-Section -->
+<main class="hero-slide-three ">
+    <div class="item">
+        <img src="../static/images/3.1.jpg" alt="hero-1">
+        <div class="hero-slider__content-wrapper">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div class="col-lg-10 text-center">
+                        <div class="hero-slider__content">
+                            <h2 class="hero-slider__title">欢迎来到铭德教育在线课堂！</h2>
+                            <p class="hero-slider__text">成就IT梦想，就来铭德教育！</p>
+                            <a class="hero-slider__btn active mr-2" href="{% url 'courses:course_list' %}"> 在线学习</a>
+                            {#                            <a class="hero-slider__btn" href="contact.html"> Contact Us</a>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <img src="../static/images/3.2.jpg" alt="hero-1">
+        <div class="hero-slider__content-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-12">
+                        <div class="hero-slider__content">
+                            <h2 class="hero-slider__title">选择你想学的课程吧！</h2>
+                            <p class="hero-slider__text">成就IT梦想，就来铭德教育！</p>
+                            <a class="hero-slider__btn active mr-2" href="{% url 'courses:course_list' %}"> 在线学习</a>
+                            {#                            <a class="hero-slider__btn" href="contact.html"> Contact Us</a>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <img src="../static/images/3.3.jpg" alt="hero-1">
+        <div class="hero-slider__content-wrapper">
+            <div class="container">
+                <div class="row justify-content-lg-center">
+                    <div class="col-lg-10 text-center">
+                        <div class="hero-slider__content">
+                            <h2 class="hero-slider__title">在线IT培训 - 首选铭德教育</h2>
+                            <p class="hero-slider__text">成就IT梦想，就来铭德教育！</p>
+                           <a class="hero-slider__btn active mr-2" href="{% url 'courses:course_list' %}"> 在线学习</a>
+                            {#                            <a class="hero-slider__btn" href="contact.html"> Contact Us</a>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- End-Main-Section -->
+<!-- searching area -->
+<div class="search_area search_area_three">
+    <div class="container">
+
+        <!--Search Form-->
+        <form>
+            {#            <div class="form-group icon_down">#}
+            {#                <select class="selectpicker search-fields form-control">#}
+            {#                    <option value="0"> 公开课</option>#}
+            {#                    <option value="1"> 课程机构</option>#}
+            {#                    <option value="2"> 授课老师</option>#}
+            {##}
+            {#                </select>#}
+            {#            </div>#}
+
+            {#            <div class="form-group">#}
+            {#                <input type="text" class="zt-control" placeholder="搜索课程/机构/讲师...">#}
+            {#            </div>#}
+            {#            <div class="form-group">#}
+            {#                <input type="number" class="zt-control" placeholder="Childs" min="1" max="100">#}
+            {#            </div>#}
+            {#            <div class="form-group date input-datepicker">#}
+            {#                <input type="text" class="form-control " id="datepicker" name="DateFron"#}
+            {#                       data-date-format="yyyy-mm-dd" placeholder="Check In" value="">#}
+            {#                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>#}
+            {#            </div>#}
+            {#            <div>#}
+            {#                <button type="submit" class="btn-tour">搜索</button>#}
+            {#            </div>#}
+            {#        </form>#}
+            {#    </div>#}
+    </div>
+    <!-- End-searching-area-->
+    <!-- about-area -->
+    <section class="ws-section-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="video-img-box">
+                        <img src="../static/images/gallery-5.jpg" alt="#">
+                        <div class="pulse-box">
+                            <a href="{% static 'video/pig.mp4' %}" data-lity class="pulse-icon"><i
+                                    class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h2>10分钟了解铭德教育20年发展历史</h2>
+                        <p>
+                            铭德教育是垂直的互联网IT技能免费学习网站。以独家视频教程、在线编程工具、学习计划、问答社区为核心特色。在这里，你可以找到最好的互联网技术牛人，也可以通过免费的在线公开视频课程学习国内领先的互联网IT技术。</p>
+                        <p>
+                            课程涵盖前端开发、PHP、Html5、Android、iOS、Swift等IT前沿技术语言，包括基础课程、实用案例、高级分享三大类型，适合不同阶段的学习人群。以纯干货、短视频的形式为平台特点，为在校学生、职场白领提供了一个迅速提升技能、共同分享进步的学习平台。 </p>
+
+                        {#                    <a href="about.html" class="read-btn">Read More</a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End-about-area -->
+    <!-- service-section -->
+    <section class="service-one ws-section-spacing bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-title ">
+                        <h2 class="title">选择我们的理由</h2>
+                        <h4 class="sub-title">铭德教育秉承“开拓、创新、公平、分享”的精神，将互联网特性全面的应用在教育领域，致力于为教育机构及求学者打造一站式互动在线教育品牌。</h4>
+                    </div>
+                </div>
+            </div>
+            {#        <div class="row">#}
+            {#            <div class="col-lg-6">#}
+            {#                <img src="../static/images/abt-2.PNG" alt="about-2">#}
+            {#            </div>#}
+            {#            <div class="col-lg-6">#}
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="servicebox-one service-type-two">
+                        <div class="service-box-icon"><i class="fas fa-route"></i></div>
+                        <h3 class="service-box-title">目标性学习</h3>
+                        <p class="service-box-desc">
+                            每一个学习计划都是针对某一职位、某个方向来设定，能够帮助初学者或入门者明确学习路径，从易到难、从理论到实战、从核心到周边，循序渐进地达成学习目标。</p>
+                        {#                            <a class="btn" href="#">See more</a>#}
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="servicebox-one service-type-two">
+                        <div class="service-box-icon"><i class="fab fa-avianex"></i></div>
+                        <h3 class="service-box-title">统合性学习</h3>
+                        <p class="service-box-desc">铭德教育学习计划将各种课程内容进行有机整合，来帮助学员获得统合性学习。学习计划将知识点和技能有机整合，帮助学员掌握知识点和编程技能。
+                        </p>
+                        {#                            <a class="btn" href="#">See more</a>#}
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="servicebox-one service-type-two">
+                        <div class="service-box-icon"><i class="fas fa-bullhorn"></i></div>
+                        <h3 class="service-box-title">实战派老师</h3>
+                        <p class="service-box-desc">老师来自于各大IT公司重要技术岗位，拥有丰富的实战经验。语言平实、通俗易懂，更接地气，传授最有价值的经验之谈。</p>
+                        {#                            <a class="btn" href="#">See more</a>#}
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="servicebox-one service-type-two">
+                        <div class="service-box-icon"><i class="fa fa-home"></i></div>
+                        <h3 class="service-box-title">实用性内容</h3>
+                        <p class="service-box-desc">
+                            课程内容注重实用性，不仅让学员通过学习能够做出产品，而且学习过程中掌握的方法技巧在实际工作中用得上，能够切实帮助学员提升工作技能。</p>
+                        {#                            <a class="btn" href="#">See more</a>#}
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="servicebox-one service-type-two">
+                        <div class="service-box-icon"><i class="fas fa-ticket-alt"></i></div>
+                        <h3 class="service-box-title">个性化视效</h3>
+                        <p class="service-box-desc">铭德教育的绝大多数课程都经过了专业的后期制作，为课程内容匹配了个性化的视觉效果，帮助学员更好地理解课程内容，增加学习的乐趣。</p>
+                        {#                            <a class="btn" href="#">See more</a>#}
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="servicebox-one service-type-two">
+                        <div class="service-box-icon"><i class="fa fa-bed"></i></div>
+                        <h3 class="service-box-title">业界主流编辑器</h3>
+                        <p class="service-box-desc">铭德教育的在线编程采用了业界主流的ACE编辑器，经过专业人士和程序员同行们的认可，能够切实地给学员带来良好的编程体验。
+                        </p>
+                        {#                            <a class="btn" href="#">See more</a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {#        </div>#}
+        {#    </div>#}
+    </section>
+    <!-- End-service-section -->
+    <!-- Counter-section -->
+    <section class="ws-section-spacing bg-img-counter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="counter-box">
+                        <span class="count-icon"><i class="fas fa-user-graduate"></i></span>
+                        <h2 class="counter">12240</h2>
+                        <h3 class="count-title">学员</h3>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="counter-box">
+                        <span class="count-icon"><i class="fas fa-user-friends"></i></span>
+                        <h2 class="counter">240</h2>
+                        <h3 class="count-title">讲师</h3>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="counter-box">
+                        <span class="count-icon"><i class="fas fa-chalkboard"></i></span>
+                        <h2 class="counter">3340</h2>
+                        <h3 class="count-title">课程</h3>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="counter-box">
+                        <span class="count-icon"><i class="fas fa-mouse-pointer"></i></span>
+                        <h2 class="counter">102400</h2>
+                        <h3 class="count-title">点击量</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End-Counter-section -->
+    <!-- Start-Package-Section -->
+    <section class="ws-section-spacing bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-title ">
+                        <h2 class="title">公开课程</h2>
+                        <h4 class="sub-title">课程内容注重实用性，不仅让学员通过学习能够做出产品，而且学习过程中掌握的方法技巧在实际工作中用得上，能够切实帮助学员提升工作技能。</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row masonry-item">
+                <div class="col-lg-4 col-md-6 col-sm-12 masonry">
+                    <div class="package-one">
+                        <div class="img-wapper">
+                            <img class="scrollLoading" src="../static/images/github.png"/>
+                        </div>
+                        <div class="package-content">
+                            <h3>Git & GitHub 教程</h3>
+                            <p>快来学习吧！ </p>
+{#                                <span>$500</span>#}
+
+                            <ul class="ct-action">
+                                <li><a href="http://127.0.0.1:8000/courses/detail/(%3FP6%5Cd+)" class="booking-btn">查看课程详情</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 col-sm-12 masonry">
+                    <div class="package-one">
+                        <div class="img-wapper">
+                            <img class="scrollLoading" src="../static/images/c++.jpg"/>
+                        </div>
+                        <div class="package-content">
+                            <h3>零基础学C++</h3>
+                        <p>快来学习吧！ </p>
+                            <ul class="ct-action">
+                                <li><a href="http://127.0.0.1:8000/courses/detail/(%3FP5%5Cd+)" class="booking-btn">查看课程详情</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 col-sm-12 masonry">
+                    <div class="package-one">
+                        <div class="img-wapper">
+                            <img class="scrollLoading" src="../static/images/python.jpg"/>
+                        </div>
+                        <div class="package-content">
+                            <h3>Python教程 从0到1入门编程 </h3>
+                          <p>快来学习吧！ </p>
+                            <ul class="ct-action">
+                                <li><a href="http://127.0.0.1:8000/courses/detail/(%3FP3%5Cd+)" class="booking-btn">查看课程详情</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 col-sm-12 masonry">
+                    <div class="package-one">
+                        <div class="img-wapper">
+                            <img src="../static/images/mysql.jpg" alt="package-img">
+                        </div>
+                        <div class="package-content">
+                            <h3>MySQL 基础+高级篇</h3>
+                           <p>快来学习吧！ </p>
+                            <ul class="ct-action">
+                                <li><a href="http://127.0.0.1:8000/courses/detail/(%3FP2%5Cd+)" class="booking-btn">查看课程详情</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 col-sm-12 masonry">
+                    <div class="package-one">
+                        <div class="img-wapper">
+                            <img src="../static/images/django.png" alt="package-img">
+                        </div>
+                        <div class="package-content">
+                            <h3>Django 基础+实战</h3>
+                            <p>快来学习吧！ </p>
+                            <ul class="ct-action">
+                                <li><a href="http://127.0.0.1:8000/courses/detail/(%3FP4%5Cd+)" class="booking-btn">查看课程详情</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 col-sm-12 masonry">
+                    <div class="package-one">
+                        <div class="img-wapper">
+                            <img src="../static/images/java.jpg" alt="package-img">
+                        </div>
+                        <div class="package-content">
+                            <h3>Java入门</h3>
+                         <p>快来学习吧！ </p>
+                            <ul class="ct-action">
+                                <li><a href="http://127.0.0.1:8000/courses/detail/(%3FP1%5Cd+)" class="booking-btn">查看课程详情</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- item-end -->
+            </div>
+        </div>
+    </section>
+    <!-- End-Package-Section -->
+    <!-- offer-section -->
+    <section class="offer-area-one same-section-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="add-area ">
+                        <h2>课程正在进行</h2>
+                        <h2>每天 <span class="text-theme">1-2&nbsp;</span>小时  </h2>
+                        {#                    <p>If you’re looking for a truly memorable family break here you find the lowest price on the#}
+                        {#                        right hotel for you. It's indescribable. Stay up to date and check out the deals for these#}
+                        {#                        trending destinations.</p>#}
+                        <br>
+                        <a href="{% url 'courses:course_list' %}" class="site-button white">开始学习吧！</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6"></div>
+            </div>
+        </div>
+    </section>
+    <!-- End-offer-section -->
+    <!-- Desination-slide -->
+    <section class="same-section-spacing desination-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-title ">
+                        <h2 class="title">课程机构</h2>
+                        <h4 class="sub-title">这是课程机构。</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="destination-slide">
+                        <div class="item">
+                            <div class="place-box">
+                                <div class="wapper-img">
+
+                                    <img class="scrollLoading" src="../static/images/czbk.png"/>
+                                    <a href="http://127.0.0.1:8000/org/home/(%3FP2%5Cd+)" class="pop-btn">查看机构详情</a>
+                                </div>
+
+                                <div class="desi-inner">
+                                    <h4>传智播客 </h4>
+                                    <p>在线教育平台</p>
+{#                                    <span class="float-right">4 tours</span>#}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="place-box">
+                                <div class="wapper-img">
+                                    <img src="../static/images/mkw.png">
+                                    <a href="http://127.0.0.1:8000/org/home/(%3FP1%5Cd+)" class="pop-btn">查看机构详情</a>
+                                </div>
+
+                                <div class="desi-inner">
+                                    <h4>慕课网</h4>
+                                    <p>在线教育平台</p>
+{#                                    <span class="float-right">3 tours</span>#}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="place-box">
+                                <div class="wapper-img">
+                                    <img src="../static/images/wygkk.png">
+                                    <a href="http://127.0.0.1:8000/org/home/(%3FP3%5Cd+)" class="pop-btn">查看机构详情</a>
+                                </div>
+
+                                <div class="desi-inner">
+                                    <h4>网易公开课</h4>
+                                    <p>在线教育平台</p>
+{#                                    <span class="float-right">6 tours</span>#}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="place-box">
+                                <div class="wapper-img">
+                                    <img src="../static/images/zhs.png" alt="">
+                                    <a href="http://127.0.0.1:8000/org/home/(%3FP4%5Cd+)" class="pop-btn">查看机构详情</a>
+                                </div>
+
+                                <div class="desi-inner">
+                                    <h4>智慧树</h4>
+                                    <p>在线教育平台</p>
+                                    <span class="float-right">7 tours</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="place-box">
+                                <div class="wapper-img">
+                                    <img src="../static/images/mooc.png" alt="">
+                                    <a href="http://127.0.0.1:8000/org/home/(%3FP5%5Cd+)" class="pop-btn">查看机构详情</a>
+                                </div>
+
+                                <div class="desi-inner">
+                                    <h4>Mooc学院</h4>
+                                    <p>在线教育平台</p>
+                                    <span class="float-right">5 tours</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="place-box">
+                                <div class="wapper-img">
+                                    <img src="../static/images/khxy.png" alt="">
+                                    <a href="http://127.0.0.1:8000/org/home/(%3FP6%5Cd+)" class="pop-btn">查看机构详情</a>
+                                </div>
+
+                                <div class="desi-inner">
+                                    <h4>可汗学院</h4>
+                                    <p>在线教育平台</p>
+                                    <span class="float-right">4 tours</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End-Desination-slide -->
+    <!-- Testimonial-section -->
+    <section class="same-section-spacing  bg-gray Testimonial-one">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-title ">
+                        <h2 class="title">学员评价</h2>
+                        <h4 class="sub-title">这里是一些优质学员评价。</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="testi-slide-one">
+                        <div class="item">
+                            <img src="../static/images/per1.png">
+                            <div class="testi-content">
+                                <p>课程非常好！<br>一定要好好学习呀！<br>课程非常好！<br>一定要好好学习呀！</p>
+                                <span class="rating"> <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i></span>
+                                <h4>Daniel Baci</h4>
+                                <p>学习课程：C++ </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="../static/images/per2.png">
+                            <div class="testi-content">
+                                <p>课程非常好！<br>一定要好好学习呀！<br>课程非常好！<br>一定要好好学习呀！</p>
+
+                                <span class="rating"> <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i></span>
+                                <h4>Jhonthan Smith</h4>
+                                <p>学习课程：Django</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="../static/images/per3.png">
+                            <div class="testi-content">
+                                <p>课程非常好！<br>一定要好好学习呀！<br>课程非常好！<br>一定要好好学习呀！</p>
+
+                                <span class="rating"> <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i></span>
+                                <h4>Emily Joe</h4>
+                                <p>学习课程：C++ </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="../static/images/per4.png">
+                            <div class="testi-content">
+                                <p>课程非常好！<br>一定要好好学习呀！<br>课程非常好！<br>一定要好好学习呀！</p>
+
+                                <span class="rating"> <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i></span>
+                                <h4>John Doe</h4>
+                                <p>学习课程：Java </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End-Testimonial-section -->
+    <!-- Blog-section -->
+    <section class="ws-section-spacing blog-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-title ">
+                        <h2 class="title">技术共享</h2>
+                        <h4 class="sub-title">这里是一些共享的技术文章。</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="package-one blog-box">
+                        <div class="img-wapper">
+                            <img src="../static/images/pack-4.jpg" alt="package-img">
+                        </div>
+                        <div class="package-content">
+                            <h3><a href="https://sevenven777.github.io/">博客分享1</a></h3>
+                            <ul class="meta-tag">
+                                <li><a href="#"><i class="fa fa-user"></i>田嘉汇</a></li>
+                                <li><a href="#"><i class="far fa-calendar-alt"></i> 12 june, 2019</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 10</a></li>
+                            </ul>
+                            <p>小田儿的博客首页1</p>
+                            <a href="https://sevenven777.github.io/" class="read-btn">查看详情<i
+                                    class="fas fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="package-one blog-box">
+                        <div class="img-wapper">
+                            <img src="../static/images/pack-5.jpg" alt="package-img">
+                        </div>
+                        <div class="package-content">
+                            <h3><a href="https://www.jianshu.com/u/400aba58cff5">博客分享2</a></h3>
+                            <ul class="meta-tag">
+                                <li><a href="#"><i class="fa fa-user"></i> 田嘉汇</a></li>
+                                <li><a href="#"><i class="far fa-calendar-alt"></i> 15 june, 2019</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 10</a></li>
+                            </ul>
+                            <p>小田儿的博客首页2</p>
+                            <a href="https://www.jianshu.com/u/400aba58cff5" class="read-btn">查看详情<i
+                                    class="fas fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="package-one blog-box">
+                        <div class="img-wapper">
+                            <img src="../static/images/pack-6.jpg" alt="package-img">
+                        </div>
+                        <div class="package-content">
+                            <h3>
+                                <a href="https://sevenven777.github.io/2020/05/06/C++%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%AE%9E%E7%8E%B0(%E5%8A%A0%E5%8F%B7%E3%80%81%E5%B7%A6%E7%A7%BB%E3%80%81%E9%80%92%E5%A2%9E%E3%80%81%E8%B5%8B%E5%80%BC%E3%80%81%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E3%80%81%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8)/">
+                                    C++运算符重载实现</a></h3>
+                            <ul class="meta-tag">
+                                <li><a href="#"><i class="fa fa-user"></i> 田嘉汇</a></li>
+                                <li><a href="#"><i class="far fa-calendar-alt"></i> 20 june, 2019</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> 10</a></li>
+                            </ul>
+                            <p>加号、左移、递增、赋值、关系运算符等</p>
+                            <a href="https://sevenven777.github.io/2020/05/06/C++%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E5%AE%9E%E7%8E%B0(%E5%8A%A0%E5%8F%B7%E3%80%81%E5%B7%A6%E7%A7%BB%E3%80%81%E9%80%92%E5%A2%9E%E3%80%81%E8%B5%8B%E5%80%BC%E3%80%81%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E3%80%81%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8)/"
+                               class="read-btn">查看详情<i class="fas fa-angle-double-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End-Blog-section -->
+    <!-- Partner-section -->
+    <section class="same-section-spacing bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-title ">
+                        <h2 class="title">合作伙伴</h2>
+                        <h4 class="sub-title">友链联系 E-mail： t871640073@qq.com </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="client-slide">
+                        <div class="item">
+                            <div class="img-wapper">
+                                <img src="{% static 'images/client1.png' %}" alt="">
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="img-wapper">
+                                <img src="{% static 'images/client2.png' %}" alt="">
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="img-wapper">
+                                <img src="{% static 'images/client3.png' %}" alt="">
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="img-wapper">
+                                <img src="{% static 'images/client4.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="img-wapper">
+                                <img src="{% static 'images/client1.png' %}" alt="">
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="img-wapper">
+                                <img src="{% static 'images/client2.png' %}" alt="">
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="img-wapper">
+                                <img src="{% static 'images/client3.png' %}" alt="">
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="item">
+                            <div class="img-wapper">
+                                <img src="{% static 'images/client4.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End-Partner-section -->
+    <!-- Footer-section -->
+    <footer class="ws-section-spacing img-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-7 col-sm-12">
+                    <div class="footer-widget">
+                        <div class="title">
+                            <h3>关于我们</h3>
+                        </div>
+                        <p>从入门到具备1年开发经验<br>
+                            1年以上开发经验系统成长</p>
+                        <ul class="footer-icon">
+                            <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-google"></i></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-5 col-sm-12">
+                    <div class="footer-widget">
+                        <div class="title">
+                            <h3>有用链接</h3>
+                        </div>
+                        <ul class="link-widget">
+                            <li><a href="#">企业服务</a></li>
+                            <li><a href="#">人才招聘</a></li>
+                            <li><a href="#">讲师招募</a></li>
+                            <li><a href="#">帮助中心</a></li>
+                            <li><a href="#">意见反馈</a></li>
+                            <li><a href="#">联系我们</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-12">
+                    <div class="footer-widget">
+                        <div class="title">
+                            <h3>新闻
+                            </h3>
+                        </div>
+                        <ul class="recent-post-list">
+                            <li>
+                                <div class="post-thum">
+                                </div>
+                                <div class="post-content">
+                                    <h5><a href="#">新课程上线</a>
+                                    </h5>
+                                    <span>12 July, 2018</span>
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="post-thum">
+                                    <img src="{% static 'images/f2.jpg' %}" alt="" class="img-rounded">
+                                </div>
+                                <div class="post-content">
+                                    <h5><a href="#">学员新动态</a></h5>
+                                    <span>12 July, 2018</span>
+                                </div>
+                            </li>
+
+                            <br>
+                            <li>
+                                <div class="post-thum">
+                                    <img src="{% static 'images/f3.jpg' %}" alt="" class="img-rounded">
+                                </div>
+                                <div class="post-content">
+                                    <h5><a href="#">更多新闻</a>
+                                    </h5>
+                                    <span>12 July, 2018</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-7 col-sm-12">
+                    <div class="footer-widget">
+                        <div class="title">
+                            <h3>相册</h3>
+                        </div>
+                        <ul class="ftr-gallery-list">
+                            <li><a href="{% static 'images/pack-7.jpg' %}" data-lity><img
+                                    src="{% static 'images/pack-7.jpg' %}" alt=""></a>
+                            </li>
+                            <li><a href="{% static 'images/pack-1.jpg' %}" data-lity><img
+                                    src="{% static 'images/pack-1.jpg' %}" alt=""></a>
+                            </li>
+                            <li><a href="{% static 'images/pack-2.jpg' %}" data-lity><img
+                                    src="{% static 'images/pack-2.jpg' %}" alt=""></a>
+                            </li>
+                            <li><a href="{% static 'images/pack-6.jpg' %}" data-lity><img
+                                    src="{% static 'images/pack-6.jpg' %}" alt=""></a>
+                            </li>
+                            <li><a href="{% static 'images/pack-5.jpg' %}" data-lity><img
+                                    src="{% static 'images/pack-5.jpg' %}" alt=""></a>
+                            </li>
+                            <li><a href="{% static 'images/pack-4.jpg' %}" data-lity><img
+                                    src="{% static 'images/pack-4.jpg' %}" alt=""></a>
+                            </li>
+                            <li><a href="{% static 'images/pack-3.jpg' %}" data-lity><img
+                                    src="{% static 'images/pack-3.jpg' %}" alt=""></a>
+                            </li>
+                            <li><a href="{% static 'images/pack-2.jpg' %}" data-lity><img
+                                    src="{% static 'images/pack-2.jpg' %}" alt=""></a>
+                            </li>
+                            <li><a href="{% static 'images/pack-1.jpg' %}" data-lity><img
+                                    src="{% static 'images/pack-1.jpg' %}" alt=""></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- copyright-area -->
+    <div class="footer-bottom text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="left-text">
+                        Copyright &copy; 2020.Company name All rights reserved.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End-footer-section -->
+    <!-- Back to top button -->
+    <a id="btn-to-top" class="show"></a>
+    <!-- Jquery.min.js-->
+    <script src="{% static 'js/jquery.1.12.4.js' %}"></script>
+    <!--bootstrap.min.js-->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap-datepicker.js"></script>
+    <!--slicknav.min.js-->
+    <script src="../static/js/jquery.slicknav.min.js"></script>
+    <!--slickslider.min.js-->
+    <script src="../static/js/slick.min.js"></script>
+    <!-- counterup.min.js -->
+    <script src="../static/js/waypoints.min.js"></script>
+    <script src="../static/js/jquery.counterup.min.js"></script>
+    <!-- magnific-popup.js -->
+    <script src="../static/js/lity.min.js"></script>
+    <!-- isotope.pkgd.min.js -->
+    <script src="../static/js/isotope.pkgd.min.js"></script>
+    <script src="../static/js/imagesloaded.js"></script>
+    <!-- main.js -->
+    <script src="../static/js/main.js"></script>
+</div>
+</body>
+
+</html>
+

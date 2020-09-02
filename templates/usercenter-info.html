@@ -1,0 +1,278 @@
+{% extends 'usercenter-base.html' %}
+{% load staticfiles %}
+{% block title %}个人信息 - 铭德教育在线课堂
+{% endblock %}
+
+{% block right %}
+    <div class="right">
+        <div class="personal_des ">
+            <div class="head" style="border:1px solid #eaeaea;">
+                <h1>个人信息</h1>
+            </div>
+
+
+            <div class="inforcon">
+                <div class="left" style="width:242px;">
+                    <iframe id='frameFile' name='frameFile' style='display: none;'></iframe>
+
+                    <form class="clearfix" id="jsAvatarForm" enctype="multipart/form-data" autocomplete="off"
+                          method="post" action="{% url 'users:image_upload' %}" target='frameFile'>
+                        <label class="changearea" for="avatarUp">
+
+                            <span id="avatardiv" class="pic">
+                                <img width="100" height="100" src="{{ MEDIA_URL }}{{ request.user.image }}"/>
+                            </span>
+
+                            <span class="fl upload-inp-box" style="margin-left:70px;">
+
+                                <span class="button btn-green btn-w100" id="jsAvatarBtn">上传头像</span>
+                                <p>&nbsp;</p>
+                               <input type="file" name="image" id="avatarUp" class="js-img-up"/>
+
+                            </span>
+                        </label>
+                        <input type='hidden' name='csrfmiddlewaretoken' value='799Y6iPeEDNSGvrTu3noBrO4MBLv6enY'/>
+                        {% csrf_token %}
+                    </form>
+
+
+                    <div style="border-top:1px solid #eaeaea;margin-top:30px;">
+                        <a class="button btn-green btn-w100" id="jsUserResetPwd" style="margin:80px auto;width:100px;">修改密码</a>
+                    </div>
+
+
+                </div>
+
+
+                <form class="perinform" id="jsEditUserForm" autocomplete="off">
+                    <ul class="right">
+                        <li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
+                            <input type="text" name="nick_name" id="nick_name" value="{{ request.user.nike_name }}"
+                                   maxlength="10">
+                            <i class="error-tips"></i>
+                        </li>
+                        <li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：
+                            <input type="text" id="birth_day" name="birthday"
+                                   value="{{ request.user.birthday|default_if_none:''|date:'Y-m-d' }}"/>
+                            <i class="error-tips"></i>
+                        </li>
+                        <li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="male"
+                                                                        {% if request.user.gender == 'male' %}checked="checked"{% endif %}>男</label>
+                            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="female"
+                                                                              {% if request.user.gender == 'female' %}checked="checked"{% endif %}>女</label>
+                        </li>
+                        <li class="p_infor_city">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
+                            <input type="text" name="address" id="address" placeholder="请输入你的地址"
+                                   value="{{ request.user.address }}" maxlength="10">
+                            <i class="error-tips"></i>
+                        </li>
+                        <li>联系方式：
+                            <input type="text" name="mobile" id="mobile" placeholder="请输入你的联系方式"
+                                   value="{{ request.user.mobile|default_if_none:'' }}" maxlength="11">
+                        </li>
+                        <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
+                            <input class="borderno" type="text" name="email" readonly="readonly"
+                                   value="{{ request.user.email }}"/>
+                            <span class="green changeemai_btn">[修改]</span>
+                        </li>
+
+                        <li class="button heibtn">
+                            <input type="button" id="jsEditUserBtn" value="保存">
+                        </li>
+                    </ul>
+
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block custom_jss %}
+    <script type="text/javascript">
+        //提交用户信息修改
+        $(function () {
+            $('#jsEditUserBtn').on('click', function () {
+                var mobile = $("#mobile").val()
+                if ( len(mobile) < 11) {
+                    alert("手机号码长度错误！")
+                    return
+                }
+                $.ajax({
+                    cache: false,
+                    type: 'POST',
+                    url: '{% url "users:update_info" %}',
+                    data: $('#jsAvatarForm').serialize(),
+                    async: true,
+                    success: function (data) {
+                        if (data.info_save_status === 'success') {
+                            $('#usercenter_msg').html(data.info_save__msg);
+                            setTimeout(
+                                'window.location.reload()', 1000
+                            );
+                        } else {
+                            $('#nick_name').html(data.nick_name);
+                            $('#birth_day').html(data.birthday);
+                            $('#address').html(data.address);
+                            $('#mobile').html(data.mobile);
+                        }
+                    },
+                });
+            });
+        })
+
+        //修改邮箱发送验证码
+        $(function () {
+            $('#send_email_button').on('click', function () {
+                let new_email = document.getElementById('email').value;
+                var myemail = $("#email").val()
+                if (myemail === "") {
+                    alert("邮箱不能为空")
+                    return
+                }
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: "{% url 'users:user_send_verify_code' %}?new_email=" + new_email,
+                    dataType: "json",
+                    async: true,
+                    beforeSend: function (XMLHttpRequest) {
+                        $('#send_email_button').val('已发送');
+                        $('#new_email').attr('disabled', true);  // 输入邮箱禁用
+                        $('#send_email_button').attr('disabled', true);  // 发送验证码按钮禁用
+
+                        alert("邮件发送成功！")
+                        {#$('#js_modify_email_button').html('验证中...');#}
+                    },
+
+                    success: function (data) {
+                        document.getElementById('email_msg').innerText = data.email_msg;
+                        if (data.email_status === 'success') {
+                            $('#send_email_button').attr('disabled', true);  // 发送邮件按钮变为不可点击
+                            $('#send_email_button').val('已发送验证码');  // 发送邮件文字修改
+                            $('#new_email').attr('disabled', true);  // 输入框变为不可输入
+                        } else {
+                            $('#send_email_button').attr('disabled', false);  // 邮件发送失败按钮可点击
+                            $('#send_email_button').html('获取验证码');  // 发送邮件文字修改
+                            $('#new_email').attr('disabled', false);  // 输入框变为输入
+                        }
+                    },
+                });
+            })
+
+        })
+
+        //关闭修改邮箱模态框后，发送验证码变为可点击
+        function recovery_button() {
+            $('#send_email_button').attr('disabled', false);  // 邮件发送失败按钮可点击
+            $('#send_email_button').val('获取验证码');  // 发送邮件文字修改
+            $('#new_email').attr('disabled', false);  // 输入框变为输入
+        }
+
+
+        //提交邮箱修改表单
+        $(function () {
+            $('#jsChangeEmailBtn').on('click', function () {
+                var new_email = $("#new_email").val()
+                if (new_email === "") {
+                    alert("邮箱不能为空")
+                    return
+                }
+                $.ajax({
+                    cache: false,
+                    type: 'POST',
+                    url: '{% url "users:user_save_email_modify" %}',
+                    data: $('#js_modify_email_form').serialize(),
+                    async: true,
+                    beforeSend: function (XMLHttpRequest) {
+                        $("#jsChangeEmailBtn").html("验证中...").show(500);
+                    },
+
+                    success: function (data) {
+                        if (data.save_email_status === 'success') {
+
+                            $('#usercenter_msg').html(data.save_email_msg);
+                            alert("邮箱修改成功！")
+                            return
+                        } else if (data.save_email_status === 'fail') {
+                            alert("邮箱修改失败！")
+                            return
+                            $('#email_msg').html(data.save_email_msg);  // 模态框顶部错误提示
+                            setTimeout(
+                                "$('#jsChangeEmailBtn').html('提交更改')", 1000  //按钮显示1s验证中，验证不通过就恢复
+                            );
+
+
+                        }
+                    },
+                });
+            });
+        })
+
+        //修改密码
+        $(function () {
+            $('#jsResetPwdBtn').on('click', function () {
+                var password1 = $("#password1").val()
+                var password2 = $("#password2").val()
+                if (password1 === "" || password2 === "") {
+                    alert("密码不能为空")
+                    return
+                }
+                $.ajax({
+                    cache: false,
+                    type: 'POST',
+                    url: '{% url "users:update_pwd" %}',
+                    data: $('#jsResetPwdForm').serialize(),
+                    async: true,
+                    beforeSend: function (XMLHttpRequest) {
+                        $("#jsChangeEmailBtn").html("验证中...").show(500);
+                    },
+
+                    success: function (data) {
+                        if (data.modify_pwd === 'success') {
+                            alert("密码修改成功！请重新登录！")
+                            window.location.reload()
+
+                        } else if (data.modify_pwd === 'fail') {
+                            alert("密码修改失败！")
+
+
+                        }
+                    },
+                });
+            });
+        })
+
+        //修改头像
+        $(function () {
+            $('#avatarUp').on('click', function () {
+                $.ajax({
+                    cache: false,
+                    type: 'POST',
+                    url: '{% url "users:image_upload" %}',
+                    data: $('#jsAvatarForm').serialize(),
+                    async: true,
+
+                    success: function (data) {
+                        if (data.update_image === 'success') {
+
+                            alert("上传之后请刷新页面！")
+                            window.location.reload()
+
+                        } else if (data.update_image === 'fail') {
+                            alert("头像修改失败！")
+
+
+                        }
+                    },
+                });
+            });
+        })
+
+    </script>
+
+{% endblock %}

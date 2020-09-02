@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+{#         {% static '' %}          #}
+<head>
+    {% block custom_css %}
+        <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/stylenew.css' %}">
+
+    {% endblock %}
+
+</head>
+<body>
+
+
+{#<footer>#}
+{#    <div class="footer">#}
+{#        <div class="wp">#}
+{#            <ul class="cont">#}
+{#                <div class="footer-widget">#}
+{#                    <div class="tell">#}
+{#                        关于我们</h3>#}
+{#                    </div>#}
+{#                    <p>从入门到具备1年开发经验<br>#}
+{#                        1年以上开发经验系统成长</p>#}
+{#                    <ul class="footer-icon">#}
+{#                        <li><a href="#"><i class="fab fa-behance"></i></a></li>#}
+{#                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>#}
+{#                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>#}
+{#                        <li><a href="#"><i class="fab fa-google"></i></a></li>#}
+{#                    </ul>#}
+{##}
+{#                </div>#}
+{##}
+{#                <li class="logo"><a href=""><img src="../images/footlogo.png"/></a></li>#}
+{#                <li class="code"><img src="../images/code.jpg"/>#}
+{#                    <p class="center">扫描关注微信</p></li>#}
+{#                <li class="third"><img class="fl" src="../images/tell.png"/>#}
+{#                    <p class="tell">8585-8585</p>#}
+{#                    <p class="time"> &nbsp; &nbsp;周一至周日 9:00-18:00</p></li>#}
+{#            </ul>#}
+{##}
+{#        </div>#}
+{#        <p class="line"></p>#}
+{#        <div class="wp clear">#}
+{##}
+{#            <span  >Copyright © 2020.Company name All rights reserved.</span>#}
+{#        </div>#}
+{#    </div>#}
+{#</footer>#}
+
+
+
+<!-- Footer-section -->
+<footer class="ws-section-spacing img-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-7 col-sm-12">
+                <div class="footer-widget">
+                    <div class="title">
+                        <h3>关于我们</h3>
+                    </div>
+                    <p>从入门到具备1年开发经验<br>
+                        1年以上开发经验系统成长</p>
+                    <ul class="footer-icon">
+                        <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google"></i></a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-12">
+                <div class="footer-widget">
+                    <div class="title">
+                        <h3>有用链接</h3>
+                    </div>
+                    <ul class="link-widget">
+                        <li><a href="#">企业服务</a></li>
+                        <li><a href="#">人才招聘</a></li>
+                        <li><a href="#">讲师招募</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-5 col-sm-12">
+                <div class="footer-widget">
+                    <div class="title">
+                        <h3>新闻
+                        </h3>
+                    </div>
+                    <ul class="recent-post-list">
+                        <li>
+                            <div class="post-thum">
+                            </div>
+                            <div class="post-content">
+                                <h5><a href="#">新课程上线</a>
+                                </h5>
+                                <span>12 July, 2018</span>
+                            </div>
+
+                        </li>
+                        <li>
+                            <div class="post-thum">
+                                <img src="{% static 'images/f2.jpg' %}" alt="" class="img-rounded">
+                            </div>
+                            <div class="post-content">
+                                <h5><a href="#">学员新动态</a></h5>
+                                <span>12 July, 2018</span>
+                            </div>
+                        </li>
+
+                        <br>
+                        <li>
+                            <div class="post-thum">
+                                <img src="{% static 'images/f3.jpg' %}" alt="" class="img-rounded">
+                            </div>
+                            <div class="post-content">
+                                <h5><a href="#">更多新闻</a>
+                                </h5>
+                                <span>12 July, 2018</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-7 col-sm-12">
+                <div class="footer-widget">
+                    <div class="title">
+                        <h3>相册</h3>
+                    </div>
+                    <ul class="ftr-gallery-list">
+                        <li><a href="{% static 'images/pack-7.jpg' %}" data-lity><img
+                                src="{% static 'images/pack-7.jpg' %}" alt=""></a>
+                        </li>
+                        <li><a href="{% static 'images/pack-1.jpg' %}" data-lity><img
+                                src="{% static 'images/pack-1.jpg' %}" alt=""></a>
+                        </li>
+                        <li><a href="{% static 'images/pack-2.jpg' %}" data-lity><img
+                                src="{% static 'images/pack-2.jpg' %}" alt=""></a>
+                        </li>
+                        <li><a href="{% static 'images/pack-6.jpg' %}" data-lity><img
+                                src="{% static 'images/pack-6.jpg' %}" alt=""></a>
+                        </li>
+                        <li><a href="{% static 'images/pack-5.jpg' %}" data-lity><img
+                                src="{% static 'images/pack-5.jpg' %}" alt=""></a>
+                        </li>
+                        <li><a href="{% static 'images/pack-4.jpg' %}" data-lity><img
+                                src="{% static 'images/pack-4.jpg' %}" alt=""></a>
+                        </li>
+                        <li><a href="{% static 'images/pack-3.jpg' %}" data-lity><img
+                                src="{% static 'images/pack-3.jpg' %}" alt=""></a>
+                        </li>
+                        <li><a href="{% static 'images/pack-2.jpg' %}" data-lity><img
+                                src="{% static 'images/pack-2.jpg' %}" alt=""></a>
+                        </li>
+                        <li><a href="{% static 'images/pack-1.jpg' %}" data-lity><img
+                                src="{% static 'images/pack-1.jpg' %}" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- copyright-area -->
+<div class="footer-bottom text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="left-text">
+                    Copyright &copy; 2020.Company name All rights reserved.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End-footer-section -->
+<!-- Back to top button -->
+<a id="btn-to-top" class="show"></a>
+<!-- Jquery.min.js-->
+<script src="{% static 'js/jquery.1.12.4.js' %}"></script>
+<!--bootstrap.min.js-->
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap-datepicker.js"></script>
+<!--slicknav.min.js-->
+<script src="../static/js/jquery.slicknav.min.js"></script>
+<!--slickslider.min.js-->
+<script src="../static/js/slick.min.js"></script>
+<!-- counterup.min.js -->
+<script src="../static/js/waypoints.min.js"></script>
+<script src="../static/js/jquery.counterup.min.js"></script>
+<!-- magnific-popup.js -->
+<script src="../static/js/lity.min.js"></script>
+<!-- isotope.pkgd.min.js -->
+<script src="../static/js/isotope.pkgd.min.js"></script>
+<script src="../static/js/imagesloaded.js"></script>
+<!-- main.js -->
+<script src="../static/js/main.js"></script>
+
+
+<section>
+    <ul class="sidebar">
+        <li class="qq">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2023525077&site=qq&menu=yes"></a>
+        </li>
+        <li class="totop"></li>
+    </ul>
+</section>
+<script src="{% static 'js/selectUi.js' %} " type='text/javascript'></script>
+<script src="{% static 'js/deco-common.js' %} " type='text/javascript'></script>
+<script type="text/javascript" src="{% static 'js/plugins/laydate/laydate.js' %} "></script>
+<script src="{% static 'js/plugins/layer/layer.js' %} "></script>
+<script src="{% static 'js/plugins/queryCity/js/public.js' %} " type="text/javascript"></script>
+<script src="{% static 'js/unslider.js' %} " type="text/javascript"></script>
+<script src="{% static 'js/plugins/jquery.scrollLoading.js' %} " type="text/javascript"></script>
+
+
+<script>
+    $(function () {
+        $('#jsStayBtn').on('click', function () {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "/org/add_ask/",
+                data: $('#jsStayForm').serialize(),
+                async: true,
+                success: function (data) {
+                    if (data.status === 'success') {
+                        $('#jsStayForm')[0].reset();
+                        alert("提交成功")
+                    } else if (data.status === 'fail') {
+                        $('#jsCompanyTips').html(data.msg)
+                    }
+                },
+            });
+        });
+    })
+
+</script>
+{% block custom_jss %}{% endblock %}
+</body>
+</html>
+
